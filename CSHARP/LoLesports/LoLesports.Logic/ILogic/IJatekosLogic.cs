@@ -4,6 +4,7 @@
 
 namespace LoLesports.Logic
 {
+    using LoLesports.Data;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -68,5 +69,17 @@ namespace LoLesports.Logic
         /// <param name="name">username.</param>
         /// <returns>Stringbuilder.</returns>
         StringBuilder JavaVegpont(string name);
+
+        /// <summary>
+        /// Returns table data as a List.
+        /// </summary>
+        /// <returns>List.</returns>
+        List<Jatekos> GetAll();
+
+        /// <summary>
+        /// Returns a Jatekos element.
+        /// </summary>
+        /// <returns>Jatekos.</returns>
+        Jatekos GetOne(string felhasznalonev);
     }
 }

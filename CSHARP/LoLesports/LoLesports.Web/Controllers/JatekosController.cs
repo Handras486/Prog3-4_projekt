@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using LoLesports.Logic;
+using LoLesports.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,81 +11,89 @@ namespace LoLesports.Web.Controllers
 {
     public class JatekosController : Controller
     {
+        IJatekosLogic jatekosLogic;
+        IMapper mapper;
+        JatekosokViewModel model;
+
+        public JatekosController()
+        {
+            jatekosLogic = new JatekosLogic();
+            mapper = MapperFactory.CreateMapper();
+            model = new JatekosokViewModel();
+            model.Editedjatekos = new Jatekos();
+
+            var jatekosok = jatekosLogic.GetAll();
+            model.JatekosList = mapper.Map<IList<Data.Jatekos>, List<Models.Jatekos>>(jatekosok);
+        }
+
+        private Jatekos GetJatekosModel(string felhasznalonev)
+        {
+            Data.Jatekos jatekos = jatekosLogic.GetOne(felhasznalonev);
+            return mapper.Map<Data.Jatekos, Jatekos>(jatekos);
+        }
+
         // GET: Jatekos
         public ActionResult Index()
         {
-            return View();
+            ViewData["editAction"] = "AddNew";
+            return View("JatekosIndex", model);
         }
 
         // GET: Jatekos/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string felhasznalonev)
         {
-            return View();
+            return View("JatekosDetails", GetJatekosModel(felhasznalonev));
         }
 
-        // GET: Jatekos/Create
-        public ActionResult Create()
+        public ActionResult Remove(string felhasznalonev)
         {
-            return View();
-        }
-
-        // POST: Jatekos/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            TempData["editResult"] = "Delete FAIL";
+            if (jatekosLogic.DeleteJatekosElement(felhasznalonev)) TempData["editResult"] = "Delete OK";
+            return RedirectToAction("Index");
         }
 
         // GET: Jatekos/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string felhasznalonev)
         {
-            return View();
+            ViewData["editAction"] = "Edit";
+            model.Editedjatekos = GetJatekosModel(felhasznalonev);
+            return View("JatekosIndex", model);
         }
 
         // POST: Jatekos/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Jatekos jatekos, string editAction)
         {
-            try
+            if (ModelState.IsValid && jatekos != null)
             {
-                // TODO: Add update logic here
+                List<object> jatekoslist = new List<object>();
+                jatekoslist.Add(jatekos.Felhasznalonev);
+                jatekoslist.Add(jatekos.Vezeteknev);
+                jatekoslist.Add(jatekos.Keresztnev);
+                jatekoslist.Add(jatekos.Eletkor);
+                jatekoslist.Add(jatekos.Pozicio);
+                jatekoslist.Add(jatekos.Nemzetiseg);
+                jatekoslist.Add(jatekos.Csapatnev);
 
+                TempData["editResult"] = "Edit OK";
+                if (editAction == "AddNew")
+                {
+                    jatekosLogic.CreateJatekosElement(jatekoslist);
+                }
+                else
+                {
+                    if (!jatekosLogic.UpdateJatekosElement(jatekoslist))
+                    {
+                        TempData["editResult"] = "Edit FAIL";
+                    }
+                }
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
-            }
-        }
-
-        // GET: Jatekos/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Jatekos/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                ViewData["editAction"] = "Edit";
+                model.Editedjatekos = jatekos;
+                return View("JatekosIndex", model);
             }
         }
     }

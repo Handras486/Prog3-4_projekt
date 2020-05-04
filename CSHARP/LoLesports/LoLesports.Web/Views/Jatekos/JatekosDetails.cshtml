@@ -1,0 +1,41 @@
+﻿@model LoLesports.Web.Models.Jatekos
+
+@{
+    ViewBag.Title = "JatekosDetails";
+}
+
+<h2>Egy játékos adatai</h2>
+
+@Html.ActionLink("Vissza a listára", "Index");
+
+<table border="1">
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Felhasznalonev)</td>
+        <td>@Html.DisplayFor(m => m.Felhasznalonev)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Vezeteknev)</td>
+        <td>@Html.DisplayFor(m => m.Vezeteknev)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Keresztnev)</td>
+        <td>@Html.DisplayFor(m => m.Keresztnev)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Eletkor)</td>
+        <td>@Html.DisplayFor(m => m.Eletkor)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Pozicio)</td>
+        <td>@Html.DisplayFor(m => m.Pozicio)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Nemzetiseg)</td>
+        <td>@Html.DisplayFor(m => m.Nemzetiseg)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(m => m.Csapatnev)</td>
+        <td>@Html.DisplayFor(m => m.Csapatnev)</td>
+    </tr>
+</table>
+

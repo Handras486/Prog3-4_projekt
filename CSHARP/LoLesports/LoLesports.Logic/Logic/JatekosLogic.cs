@@ -100,10 +100,22 @@ namespace LoLesports.Logic
         }
 
         /// <inheritdoc/>
+        public List<Jatekos> GetAll()
+        {
+            return this.JatekosRepository.GetTableElements().ToList();
+        }
+
+        /// <inheritdoc/>
         public StringBuilder GetSingleJatekosData(string felhasznalonev)
         {
             Jatekos temp = this.JatekosRepository.GetTableElement(felhasznalonev);
             return this.JatekosRepository.GetSingleTableData(temp);
+        }
+
+        /// <inheritdoc/>
+        public Jatekos GetOne(string felhasznalonev)
+        {
+            return this.JatekosRepository.GetTableElement(felhasznalonev);
         }
 
         /// <inheritdoc/>

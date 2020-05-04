@@ -1,0 +1,44 @@
+﻿@model IEnumerable<LoLesports.Web.Models.Jatekos>
+@{
+    ViewBag.Title = "JatekosList";
+}
+
+<h2>JatekosList</h2>
+
+@if (Model.Count() == 0)
+{
+<p>Nincs adat az adatbázisban!</p>
+}
+else
+{
+<table border="1">
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.First().Felhasznalonev)</th>
+        <th>@Html.DisplayNameFor(m => m.First().Vezeteknev)</th>
+        <th>@Html.DisplayNameFor(m => m.First().Keresztnev)</th>
+        <th>@Html.DisplayNameFor(m => m.First().Eletkor)</th>
+        <th>@Html.DisplayNameFor(m => m.First().Pozicio)</th>
+        <th>@Html.DisplayNameFor(m => m.First().Nemzetiseg)</th>
+        <th>@Html.DisplayNameFor(m => m.First().Csapatnev)</th>
+        <th>Datasheet</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => item.Felhasznalonev)</td>
+            <td>@Html.DisplayFor(m => item.Vezeteknev)</td>
+            <td>@Html.DisplayFor(m => item.Keresztnev)</td>
+            <td>@Html.DisplayFor(m => item.Eletkor)</td>
+            <td>@Html.DisplayFor(m => item.Pozicio)</td>
+            <td>@Html.DisplayFor(m => item.Nemzetiseg)</td>
+            <td>@Html.DisplayFor(m => item.Csapatnev)</td>
+            <td>@Html.ActionLink("[SHOW]", "Details", new { Felhasznalonev = item.Felhasznalonev })</td>
+            <td>@Html.ActionLink("[DEL]", "Remove", new { Felhasznalonev = item.Felhasznalonev })</td>
+            <td>@Html.ActionLink("[EDIT]", "Edit", new { Felhasznalonev = item.Felhasznalonev })</td>
+        </tr>
+    }
+</table>
+}
+

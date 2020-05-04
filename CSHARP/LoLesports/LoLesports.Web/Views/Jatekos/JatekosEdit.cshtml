@@ -1,0 +1,37 @@
+﻿@model LoLesports.Web.Models.Jatekos
+@{
+    ViewBag.Title = "JatekosEdit";
+}
+
+<h2>JatekosEdit</h2>
+
+@using (Html.BeginForm("Edit", "Jatekos"))
+{
+    @Html.ValidationSummary()
+
+    @Html.AntiForgeryToken()
+
+    <div class="editor-label">@Html.LabelFor(m => m.Felhasznalonev)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Felhasznalonev)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Vezeteknev)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Vezeteknev)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Keresztnev)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Keresztnev)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Eletkor)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Eletkor)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Pozicio)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Pozicio)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Nemzetiseg)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Nemzetiseg)</div>
+
+    <div class="editor-label">@Html.LabelFor(m => m.Csapatnev)</div>
+    <div class="editor-field">@Html.EditorFor(m => m.Csapatnev)</div>
+
+    <input type="submit" value="SEND" />
+}
+

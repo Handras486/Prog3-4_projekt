@@ -1,0 +1,15 @@
+﻿@model LoLesports.Web.Models.JatekosokViewModel
+
+@{
+    ViewBag.Title = "JatekosIndex";
+}
+
+<h2>Jatekosok Index</h2>
+
+<p style="color:red">
+    @TempData["editResult"]
+</p>
+
+@Html.Partial("JatekosEdit", Model.Editedjatekos)
+
+@Html.Partial("JatekosList", Model.JatekosList)
