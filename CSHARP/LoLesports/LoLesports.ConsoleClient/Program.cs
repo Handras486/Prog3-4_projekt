@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace LoLesports.ConsoleClient
 {
@@ -45,7 +46,7 @@ namespace LoLesports.ConsoleClient
                 var list = JsonConvert.DeserializeObject<List<Jatekos>>(json);
                 foreach (var item in list)
                 {
-                    Console.WriteLine(item.ToString());
+                    Console.WriteLine(item);
                 }
                 Console.ReadLine();
 
@@ -81,7 +82,7 @@ namespace LoLesports.ConsoleClient
                 Console.WriteLine("ALL" + json);
                 Console.ReadLine();
 
-                response = client.GetStringAsync(url + "del/" + felhasznalonev).Result;
+                //response = client.GetStringAsync(url + "del/" + felhasznalonev).Result;  // stringet nem tudja konvertálni
                 json = client.GetStringAsync(url + "all").Result;
                 Console.WriteLine("DEL" + response);
                 Console.WriteLine("ALL" + json);

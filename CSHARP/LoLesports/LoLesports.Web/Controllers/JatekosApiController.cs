@@ -41,6 +41,15 @@ namespace LoLesports.Web.Controllers
         [HttpGet]
         public ApiResult DeleteOneJatekos(string felhasznalonev)
         {
+            try
+            {
+                jatekosLogic.DeleteJatekosElement(felhasznalonev);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             return new ApiResult() { OperationResult = jatekosLogic.DeleteJatekosElement(felhasznalonev) };
         }
 

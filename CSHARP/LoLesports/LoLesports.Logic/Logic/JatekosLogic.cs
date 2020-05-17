@@ -92,6 +92,7 @@ namespace LoLesports.Logic
             }
         }
 
+
         /// <inheritdoc/>
         public StringBuilder GetJatekosData()
         {

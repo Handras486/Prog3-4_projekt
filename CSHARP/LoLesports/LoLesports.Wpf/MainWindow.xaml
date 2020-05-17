@@ -1,0 +1,28 @@
+﻿<Window x:Class="LoLesports.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoLesports.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="404.677" Width="625.055"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
+    <Window.DataContext>
+        <local:MainVM />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200*"/>
+            <RowDefinition Height="161*"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Path=AllJatekosok}"
+                  SelectedItem="{Binding Path=SelectedJatekos}"
+                  IsReadOnly="False"
+                  HorizontalAlignment="Left" Height="355" Margin="10,10,0,0" VerticalAlignment="Top" Width="507" Grid.RowSpan="2"/>
+        <Button Content="Load" Command="{Binding Path=LoadCmd}" HorizontalAlignment="Left" Margin="533,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Add" Command="{Binding Path=AddCmd}" HorizontalAlignment="Left" Margin="533,50,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Mod" Command="{Binding Path=ModCmd}" HorizontalAlignment="Left" Margin="533,89,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Del" Command="{Binding Path=DelCmd}" HorizontalAlignment="Left" Margin="533,131,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>
